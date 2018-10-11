@@ -1,0 +1,32 @@
+﻿@model IEnumerable<OrganizerMVC.ViewModels.EventViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Event List</h2>
+
+<p>
+    @Html.ActionLink("New", "Create", new { }, new { @class = "btn btn-success" })
+</p>
+
+<div class="list-group">
+
+    @foreach (var item in Model)
+    {
+        <a class="list-group-item" href="@Url.Action("Details", "Events", new { id = item.Id })">
+            <div class="media">
+                <img src="@Url.Content(item.ImageUrl)" alt="Image" width="200" height="136" margin="0" class="pull-left">
+
+                <span class="media-right pull-right">@Html.DisplayFor(modelItem => item.Sport.Name)</span>
+                <span class="media-right pull-right">@Html.DisplayFor(modelItem => item.StartDate)</span>
+                <h4 class="media-heading">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </h4>
+                <p class="media-object">@Html.DisplayFor(modelItem => item.Description)</p>
+            </div>
+        </a>
+    }
+
+</div>
